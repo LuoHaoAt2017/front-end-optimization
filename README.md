@@ -17,3 +17,7 @@
 
 4. 图片压缩
 附注: jpg图片远比svg图片大，项目中尽量使用svg矢量图片。
+
+附注：npm run build 打包后，如何查看效果
+首先我们需要安装它命令npm install http-server -g，
+然后执行npm run build,之后进入打包的目录我这里是cd dist然后执行http-server就可以了
