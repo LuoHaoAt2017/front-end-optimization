@@ -1,7 +1,7 @@
 import React from 'react';
-import './About.css';
+import './index.css';
 import {Button} from 'antd';
-import gmail from '../assets/svg/gmail.svg';
+import gmail from '@/assets/svg/gmail.svg';
 
 const About = function() {
     return (

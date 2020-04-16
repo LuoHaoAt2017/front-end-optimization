@@ -3,7 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // const WebpackBundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const CompressionWebpackPlugin = require('compression-webpack-plugin');
+// const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
 function resolve(pathname) {
 	return path.resolve(__dirname, pathname);
@@ -40,17 +40,17 @@ module.exports = {
 				test: /\.(woff|woff2|eot|ttf|otf)/,
 				use: ['file-loader']
 			},
-			{
-				test: /\.(png|jpg|gif|svg)$/,
-				use: [
-					{
-						loader: 'url-loader',
-						options: {
-							limit: 8192
-						}
-					}
-				]
-			}
+			// {
+			// 	test: /\.(png|jpg|gif|svg)$/,
+			// 	use: [
+			// 		{
+			// 			loader: 'url-loader',
+			// 			options: {
+			// 				limit: 8192
+			// 			}
+			// 		}
+			// 	]
+			// }
 		]
 	},
 	resolve: {
@@ -64,6 +64,6 @@ module.exports = {
 		}),
 		new CleanWebpackPlugin(),
 		// new WebpackBundleAnalyzer(),
-		new CompressionWebpackPlugin()
+		// new CompressionWebpackPlugin()
 	]
 };

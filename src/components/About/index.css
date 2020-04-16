@@ -1,0 +1,16 @@
+.about {
+    font-size: 24px;
+    min-height: 400px;
+    object-fit: contain;
+    background: url("../../assets/img/night.jpg") center;
+}
+
+.gmail {
+    width: 60px;
+}
+
+.large-btn {
+    display: inline-block;
+    font-size: 20px;
+    height: 80px;
+}
