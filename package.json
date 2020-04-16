@@ -10,8 +10,7 @@
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "webpack --progress --color",
-    "watch": "webpack --watch",
-    "report": "npm run build --report=true"
+    "watch": "webpack --watch"
   },
   "author": "luo hao",
   "license": "MIT",
