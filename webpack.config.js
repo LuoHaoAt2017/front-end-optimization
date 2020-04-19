@@ -29,8 +29,15 @@ module.exports = {
 				use: ['style-loader', 'css-loader', 'sass-loader']
 			},
 			{
-				test: /\.(jpeg|png|jpg|gif)$/,
-				loader: ['file-loader']
+				test: /\.(png|jpg|gif)$/,
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							limit: 8192
+						}
+					}
+				]
 			},
 			{
 				test: /\.svg$/,
@@ -40,18 +47,6 @@ module.exports = {
 			{
 				test: /\.(woff|woff2|eot|ttf|otf)/,
 				use: ['file-loader']
-			},
-			{
-				test: /\.(png|jpg|gif)$/,
-				use: [
-					{
-						//url-loader能将小于某个大小的图片进行base64格式的转化处理。
-						loader: 'url-loader',
-						options: {
-							limit: 2048
-						}
-					}
-				]
 			}
 		]
 	},
