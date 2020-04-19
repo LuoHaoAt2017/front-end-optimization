@@ -1,7 +1,7 @@
-
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 //const WebpackBundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
@@ -25,16 +25,19 @@ module.exports = {
 				use: ['babel-loader']
 			},
 			{
-				test: /\.css$/,
-				use: ['style-loader', 'css-loader']
-			},
-			{
-				test: /\.scss$/,
+				test: /\.(scss|css)$/,
 				use: ['style-loader', 'css-loader', 'sass-loader']
 			},
 			{
-				test: /\.(jpeg|png|jpg|gif)$/,
-				loader: ['file-loader']
+				test: /\.(png|jpg|gif)$/,
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							limit: 8192
+						}
+					}
+				]
 			},
 			{
 				test: /\.svg$/,
@@ -44,18 +47,6 @@ module.exports = {
 			{
 				test: /\.(woff|woff2|eot|ttf|otf)/,
 				use: ['file-loader']
-			},
-			{
-				test: /\.(png|jpg|gif)$/,
-				use: [
-					{
-						//url-loader能将小于某个大小的图片进行base64格式的转化处理。
-						loader: 'url-loader',
-						options: {
-							limit: 2048
-						}
-					}
-				]
 			}
 		]
 	},
@@ -66,18 +57,17 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
+			minify:{
+				removeAttributeQuotes:true /*压缩文件去掉属性的双引号*/
+			},
+			hash:true, /*加入hash值，为了避免浏览器缓存js*/
 			template: resolve('./public/index.html')
 		}),
 		new CleanWebpackPlugin(),
-		//new WebpackBundleAnalyzer(),
+		new UglifyjsWebpackPlugin(),
 		new CompressionWebpackPlugin()
 	],
-	devServer: {
-		contentBase: resolve('assets'),
-		compress: true, // 一切服务都启用 gzip 压缩
-		port: 9000,
-		hot: true, // 启用模块热替换功能
-		open: 'Google Chrome',
-		stats: 'errors-only'
+	optimization: {
+		usedExports: true//打开tree shaking 生产环境默认·true
 	}
 };
