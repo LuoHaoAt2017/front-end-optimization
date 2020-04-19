@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
+//const WebpackBundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
 function resolve(pathname) {
@@ -28,19 +29,26 @@ module.exports = {
 				use: ['style-loader', 'css-loader', 'sass-loader']
 			},
 			{
+				test: /\.(jpeg|png|jpg|gif)$/,
+				loader: ['file-loader']
+			},
+			{
+				test: /\.svg$/,
+				exclude: /node_modules/,
+				loader: 'svg-react-loader',
+			},
+			{
 				test: /\.(woff|woff2|eot|ttf|otf)/,
 				use: ['file-loader']
 			},
 			{
-				test: /\.(png|jpg|gif|svg)$/,
+				test: /\.(png|jpg|gif)$/,
 				use: [
 					{
-						loader: 'file-loader',
-					},
-					{
+						//url-loader能将小于某个大小的图片进行base64格式的转化处理。
 						loader: 'url-loader',
 						options: {
-							limit: 8192
+							limit: 2048
 						}
 					}
 				]
