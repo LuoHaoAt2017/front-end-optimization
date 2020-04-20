@@ -1,16 +1,25 @@
 import React from 'react';
 import './index.css';
-import {Button} from 'antd';
-import Account from '@/assets/svg/account.svg';
 
-const Home = function() {
-    return (
-        <div className="home">
-            <Button className="large-btn">Home</Button>
-            <span className="text">account</span>
-            <Account className="account"></Account>
-        </div>
-    )
+class Home extends React.Component {
+
+    render() {
+        return (
+            <div className="home">
+                <div id="google"></div>
+            </div>
+        )
+    }
+
+    componentDidMount() {
+        let map = document.getElementById('google');
+        if (map) {
+            this.gmap = new google.maps.Map(map, {
+                center: {lat: -34.3, lng: 150.6},
+                zoom: 8
+            });
+        }
+    }
 }
 
 export default Home;
