@@ -1,5 +1,7 @@
 .home {
-    
+    position: relative;
+    width: calc(100vw);
+    height: calc(100vh);
 }
 
 #google {
@@ -8,4 +10,19 @@
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+#places {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: rgb(255, 255, 255);
+}
+
+.place {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #eee;
+    opacity: 1;
+    box-shadow: 0 0 2px #eee;
 }
