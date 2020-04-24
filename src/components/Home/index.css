@@ -1,17 +1,28 @@
 .home {
-    font-size: 24px;
-    min-height: 400px;
-    object-fit: contain;
-    background: url("../../assets/img/xiyangyang.jpg") no-repeat center;
+    position: relative;
+    width: calc(100vw);
+    height: calc(100vh);
 }
-.text {
-    font-size: 20px;
-    color: aquamarine;
+
+#google {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
-.account {
-    width: 60px;
+
+#places {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: rgb(255, 255, 255);
 }
-.large-btn {
+
+.place {
     display: inline-block;
-    height: 80px;
+    padding: 10px 20px;
+    border: 1px solid #eee;
+    opacity: 1;
+    box-shadow: 0 0 2px #eee;
 }

@@ -5,6 +5,16 @@
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <title>前端优化实践</title>
+        <!-- 不推荐以script方式引入antd，因为这将那些没有使用到的组件也引入了。推荐以npm包的方式引入，然后按需加载。 -->
+        <!-- css的加载是阻塞式的，css没有加载完成之前，渲染就不会开始。 为了避免没有css作用的html元素，需要将css文件提前引入。-->
+        
+        <!-- 网速比较慢的时候 google地图脚本还没有加载完毕，首页中就开始绘制了，导致获取不到谷歌地图，报错。-->
+        <!-- 如果不是首页需要google地图，引入谷歌脚本的时候可以以async或者defer的方式引入，可以避免js阻塞 -->
+        <!-- 如果是首页需要google地图，就要保证首页加载完毕前谷歌地图脚本已经加载完毕。此时必须采取阻塞式引入-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeWM4SpCW_wBZQMOb3xGbV9E-l9knSUVk"></script>
+        <script> console.log('aaa');</script>
+        <script async defer> console.log('bbb');</script>
+        <script> console.log('ccc');</script>
     </head>
     <body>
         <div id="app"></div>

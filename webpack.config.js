@@ -69,5 +69,8 @@ module.exports = {
 	],
 	optimization: {
 		usedExports: true//打开tree shaking 生产环境默认·true
+	},
+	devServer: {
+		port: 9000
 	}
 };
