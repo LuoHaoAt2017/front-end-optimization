@@ -52,7 +52,7 @@ module.exports = {
 	},
 	resolve: {
 		alias: {
-			"@": resolve('./src')
+			"@": resolve('src')
 		}
 	},
 	plugins: [
