@@ -3,12 +3,13 @@ import React from 'react';
 // import About from '@/components/About/index.js';
 // import ImageLazyLoad from '@/components/LazyLoad';
 // import Throttle from '@/components/Throttle';
-import Debounce from '@/components/Debounce';
+// import Debounce from '@/components/Debounce';
+import BetterDebounce from '@/components/BetterDebounce';
 
 function App() {
 	return (
 		<div className="app">
-			<Debounce/>
+			<BetterDebounce/>
 		</div>
 	);
 }

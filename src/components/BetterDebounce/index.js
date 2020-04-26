@@ -5,7 +5,7 @@ import Search from '@/assets/svg/search.svg';
 import { Spin } from 'antd';
 // 定制一个输入建议框 auto-complete
 // 抖动：在一段时间内，多次触发同一个事件，以最后一次触发为准。
-class Debounce extends React.Component {
+class BetterDebounce extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -17,8 +17,9 @@ class Debounce extends React.Component {
             },
             suggests: []
         }
+        this.previous = 0;
         this.timer = null;
-        this.interval = 3000;
+        this.interval = 1000;
         this.handleSelect = this.handleSelect.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
@@ -67,26 +68,47 @@ class Debounce extends React.Component {
             suggest: {
                 ...state.suggest,
                 label: value
-            }
+            },
+            suggests: []
         }));
-        if (!value) { return; }
+        if (!value) { 
+            return; 
+        }
         this.setState({
             loading: true
         });
-        // 清除前一个定时器
-        if (this.timer) {
-            clearTimeout(this.timer);
-        }
-        // 创建当前定时器，过了interval时间，
-        // 没有触发新的事件，就执行最后一个定时器。
-        this.timer = setTimeout(() => {
+        const current = Date.now();
+        const previous = this.previous;
+        const interval = this.interval;
+        // 连续触发事件不超过 interval
+        if (current - previous < interval) {
+            // 防抖的逻辑
+
+            // 清除前一个定时器
+            if (this.timer) {
+                clearTimeout(this.timer);
+            }
+            // 创建当前定时器，过了interval时间，
+            // 没有触发新的事件，就执行最后一个定时器。
+            this.timer = setTimeout(() => {
+                this.previous = current;
+                this.getSuggests(value).then(res => {
+                    this.setState({
+                        suggests: res,
+                        loading: false
+                    });
+                });
+            }, interval);
+        } else {
+            // 节流的逻辑
+            this.previous = current;
             this.getSuggests(value).then(res => {
                 this.setState({
                     suggests: res,
                     loading: false
                 });
             });
-        }, this.interval);
+        }
     }
 
     handleSelect(evt) {
@@ -98,7 +120,7 @@ class Debounce extends React.Component {
 
     getSuggests(param) {
         // 模拟网络请求
-        console.log('request...');
+        console.log('request...', param);
         return new Promise(function(resolve) {
             setTimeout(() => {
                 const suggests = [
@@ -156,8 +178,12 @@ class Debounce extends React.Component {
                 });
                 console.log('response...');
                 resolve(results);
-            }, 0);
+            }, 1000);
         });
     }
+
+    componentDidMount() {
+        this.previous = Date.now();
+    }
 }
-export default Debounce;
+export default BetterDebounce;
