@@ -1,0 +1,55 @@
+@import '@/assets/scss/rem.scss';
+
+.debounce-container {
+
+    .input-container {
+        display: flex;
+        align-items: center;
+        .common {
+            display: inline-block;
+        }
+        .auto-input {
+            flex-basis: px2rem(150px);
+            flex-shrink: 2;
+            flex-grow: 6;
+
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            height: px2rem(40px);
+            line-height: px2rem(40px);
+            padding-left: px2rem(10px);
+            outline: none;
+        }
+        .input-prefix {
+            height: px2rem(30px);
+            object-fit: contain;
+        }
+        .input-suffix {
+            height: px2rem(30px);
+            object-fit: contain;
+        }
+        .input-prefix, .input-suffix {
+            flex-basis: px2rem(50px);
+            flex-shrink: 1;
+            flex-grow: 2;
+            svg {
+                max-height: 100%;
+            }
+        }
+    }
+
+    .suggest-list {
+
+        .suggest {
+            font-weight: lighter;
+            font-size: px2rem(18px);;
+        }
+    }
+
+    .suggest-load {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+    }
+}
+
