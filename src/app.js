@@ -4,11 +4,12 @@ import React from 'react';
 import LazyLoadImg from '@/components/LazyLoadImg';
 // import Throttle from '@/components/Throttle';
 // import Debounce from '@/components/Debounce';
+import ResponsiveImg from '@/components/ResponsiveImg';
 
 function App() {
 	return (
 		<div className="app">
-			<LazyLoadImg/>
+			<ResponsiveImg/>
 		</div>
 	);
 }

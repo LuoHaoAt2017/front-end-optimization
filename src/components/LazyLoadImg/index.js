@@ -85,7 +85,7 @@ class LazyLoadImg extends React.Component {
             const target = images[i];
             if (!target.src && target.dataset) {
                 const top = target.getBoundingClientRect().top;
-                console.log("rect: ", target.getBoundingClientRect());
+                // console.log("rect: ", target.getBoundingClientRect());
                 const delte = 100; // 50px的缓冲距
                 if (top < viewH + delte) {
                     target.src = target.dataset.src;
