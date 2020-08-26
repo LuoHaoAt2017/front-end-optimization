@@ -1,0 +1,21 @@
+@import '@/assets/scss/rem.scss';
+
+.img-lazy-load {
+    height: 100%;
+    .title {
+        text-align: center;
+    }
+    .list {
+        .img-container {
+            margin: 5px auto;
+            .img {
+                display: block;
+                width: 100%;
+                height: auto;
+                min-height: 250px;
+                object-fit: contain;
+                border-radius: 4px;
+            }
+        }
+    }
+}
